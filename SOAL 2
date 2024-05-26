@@ -1,0 +1,32 @@
+def is_palindrome_recursive_v2(sentence):
+    
+    sentence = sentence.lower()
+
+    if len(sentence) <= 1:
+        return True
+  
+    elif not sentence[0].isalnum():
+        return is_palindrome_recursive_v2(sentence[1:])
+
+    elif not sentence[-1].isalnum():
+        return is_palindrome_recursive_v2(sentence[:-1])
+    
+    elif sentence[0] != sentence[-1]:
+        return False
+    
+    else:
+        return is_palindrome_recursive_v2(sentence[1:-1])
+
+# Contoh penggunaan
+sentence1 = "kasur ini rusak"
+sentence2 = "kita bikin romantis"
+
+if is_palindrome_recursive_v2(sentence1):
+    print(f"'{sentence1}' adalah palindrom.")
+else:
+    print(f"'{sentence1}' bukan palindrom.")
+
+if is_palindrome_recursive_v2(sentence2):
+    print(f"'{sentence2}' adalah palindrom.")
+else:
+    print(f"'{sentence2}' bukan palindrom.")
