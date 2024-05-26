@@ -1,0 +1,40 @@
+import math
+
+def is_prime_recursive(n, divisor=None):
+
+    if divisor is None:
+        divisor = int(math.sqrt(n))
+    
+    if n < 2:
+        return False
+
+    if divisor < 2:
+        return True
+
+    if n % divisor == 0:
+        return False
+  
+    return is_prime_recursive(n, divisor - 1)
+
+def check_prime_numbers(numbers):
+    prime_results = {}
+    for number in numbers:
+        prime_results[number] = is_prime_recursive(number)
+    return prime_results
+
+# Contoh penggunaan
+if __name__ == "__main__":
+    # Menerima input dari pengguna
+    input_numbers = input("Masukkan beberapa bilangan, dipisahkan dengan koma: ")
+    # Mengonversi input string menjadi daftar bilangan bulat
+    number_list = [int(num) for num in input_numbers.split(",")]
+
+    # Memeriksa setiap bilangan dalam daftar
+    prime_results = check_prime_numbers(number_list)
+
+    # Menampilkan hasil
+    for number, is_prime in prime_results.items():
+        if is_prime:
+            print(f"{number} adalah bilangan prima.")
+        else:
+            print(f"{number} bukan bilangan prima.")
